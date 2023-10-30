@@ -32,7 +32,7 @@
             @if (Model.EnableComments && Model.CommentCount > 0)
             {
                 <span>
-                    <a href="#comments">@Model.CommentCount @(Model.CommentCount == 1 ? "comment" : "comments")</a>
+                    <a href="#comments">@Model.CommentCount @(Model.CommentCount == 1 ? "comentário" : "comentários")</a>
                 </span>
             }
         </p>
@@ -66,30 +66,29 @@
                         @Html.AntiForgeryToken()
                         @Html.Hidden("Id", Model.Id)
 
-                        <h3 class="mb-3">Leave a comment</h3>
+                        <h3 class="mb-3">Deixe seu coment&aacute;rio</h3>
                         <p class="mb-4">
-                            Please note that we won't show your email to others, or use it for sending
-                            unwanted emails. We will only use it to render your Gravatar image and to
-                            validate you as a real person.
+                            Observe que n&atilde;o mostraremos seu e-mail a outras pessoas nem o usaremos para enviar
+                            e-mails indesejados.
                         </p>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input name="CommentAuthor" type="text" class="form-control" placeholder="Your name">
+                                    <input name="CommentAuthor" type="text" class="form-control" placeholder="Seu nome">
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <input name="CommentEmail" type="text" class="form-control" placeholder="Your email address">
+                                <input name="CommentEmail" type="text" class="form-control" placeholder="Seu e-mail">
                             </div>
                         </div>
                         <div class="form-group">
-                            <input name="CommentUrl" type="text" class="form-control" placeholder="An (optional) URL to your website">
+                            <input name="CommentUrl" type="text" class="form-control" placeholder="(opcional) URL do seu site">
                         </div>
                         <div class="form-group">
-                            <textarea name="CommentBody" rows="6" class="form-control" placeholder="Your awesome comment"></textarea>
+                            <textarea name="CommentBody" rows="6" class="form-control" placeholder="Seu coment&aacute;rio"></textarea>
                         </div>
                         <div class="form-group text-left">
-                            <button class="btn btn-success">Post Comment</button>
+                            <button class="btn btn-success">Publicar coment&aacute;rio</button>
                         </div>
                     </form>
                 </div>
