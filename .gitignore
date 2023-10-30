@@ -264,3 +264,14 @@ _Pvt_Extensions
 
 # Rider generated files
 .idea
+/examples/RazorWeb/seed/bird-s-eye-view-photography-of-lighted-city-3573383.jpg
+/examples/RazorWeb/seed/cheerful-diverse-colleagues-working-on-laptops-in-workspace-3860809.jpg
+/examples/RazorWeb/seed/concentrated-little-kids-taking-notes-in-organizer-and-3874109.jpg
+/examples/RazorWeb/seed/cute-business-kids-working-on-project-together-surfing-3874121.jpg
+/examples/RazorWeb/seed/diverse-group-of-colleagues-having-meditation-together-3860619.jpg
+/examples/RazorWeb/seed/man-in-red-jacket-standing-on-the-stairs-4390730.jpg
+/examples/RazorWeb/seed/person-looking-at-phone-and-at-macbook-pro-1181244.jpg
+/examples/RazorWeb/seed/smiling-woman-working-in-office-with-coworkers-3860641.jpg
+/examples/RazorWeb/seed/woman-in-blue-long-sleeve-dress-standing-beside-brown-wooden-4100766.jpg
+/examples/RazorWeb/Controllers/SetupController.cs
+/examples/RazorWeb/Views/Setup/Index.cshtml
