@@ -72,5 +72,5 @@ app.UsePiranha(options =>
     options.UseTinyMCE();
     options.UseIdentity();
 });
-
+app.UseForwardedHeaders();
 app.Run();
