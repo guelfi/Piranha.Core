@@ -3,8 +3,13 @@
 @{
     ViewData["Title"] = !string.IsNullOrEmpty(Model.Data.MetaTitle) ? Model.Data.MetaTitle : Model.Data.Title;
     var hasImage = Model.Data.PrimaryImage.HasValue;
+    var searchTerm = Request.Query["searchTerm"];
 
-    var posts = Model.Archive.Posts.Count;
+    var filteredPosts = Model.Archive.Posts
+        .Where(post => string.IsNullOrWhiteSpace(searchTerm) ||
+                 post.Title.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)).ToList();
+
+    var posts = filteredPosts.Count; //Model.Archive.Posts.Count;
 
     Func<string> BlogLink = () => {
         return Model.Data.Permalink
@@ -47,7 +52,7 @@
             <div class="row">
                 @for (var i = n; i < Math.Min(posts, n + 2); i++)
                 {
-                    var post = Model.Archive.Posts[i];
+                    var post = filteredPosts[i]; //Model.Archive.Posts[i];
 
                     <div class="@(i == 0 ? "col-md-12" : "col-md-6")">
                         <article>
