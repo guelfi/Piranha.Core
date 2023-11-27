@@ -1,7 +1,7 @@
 @{
     var version = Piranha.Utils.GetAssemblyVersion(typeof(Piranha.App).Assembly);
-    version = version.Substring(0, version.LastIndexOf("."));
     var nameSite = WebApp.Api.Sites.GetDefaultAsync().Result.Title;
+    version = version.Substring(0, version.LastIndexOf("."));
 }
 <!doctype html>
 <html lang="en">
