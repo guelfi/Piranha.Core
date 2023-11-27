@@ -1,10 +1,11 @@
 ﻿@page
 @model RazorWeb.Pages.SearchModel
 @{
+    var searchTerm = Request.Query["searchTerm"];
 }
 <div class="container text-center">
 
-    <p>Receber Termo Pesquisa</p>
+    <p>Receber Termo Pesquisa: <strong>@searchTerm</strong></p>
 
     <p>Consultar Posts no SQLITE</p>
 
