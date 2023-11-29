@@ -35,8 +35,4 @@
 		<ProjectReference Include="..\..\identity\Piranha.AspNetCore.Identity.SQLite\Piranha.AspNetCore.Identity.SQLite.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-		<Folder Include="assets\img\" />
-	</ItemGroup>
-
 </Project>

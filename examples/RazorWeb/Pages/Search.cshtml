@@ -1,14 +1,30 @@
 ﻿@page
 @model RazorWeb.Pages.SearchModel
 @{
-
+    var searchTerm = Request.Query["searchTerm"];
+    var filteredPosts = WebApp.Api.Posts.GetAllBySiteIdAsync().Result
+        .Where(x => x.Title.Contains(searchTerm, StringComparison.OrdinalIgnoreCase));
 }
-<div class="container text-center">
 
-    <p>Receber Termo Pesquisa: <strong>@searchTerm</strong></p>
-
-    <p>Consultar Posts no SQLITE</p>
-
-    <p>Exibir Resultado</p>
-
-</div>
+<header class="has-image" style="scroll-behavior=">
+    <div class="dimmer"></div>
+    <div class="container text-center">
+        <h1>Resultado Pesquisa</h1>
+        <div class="row justify-content-center">
+            <div class="col-lg-8 lead">
+            </div>
+        </div>
+    </div>
+</header>
+<main class="archive">
+    <div class="container text-center">
+        <ul>
+            @foreach (var item in filteredPosts)
+            {
+                <li>
+                    <a href="@WebApp.Url(item)">@item.Title</a>
+                </li>
+            }
+        </ul>
+    </div>
+</main>
