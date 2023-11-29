@@ -36,8 +36,7 @@ namespace Piranha.Manager.LocalAuth.Areas.Manager.Pages
         public async Task<IActionResult> OnGet()
         {
             await _service.SignOut(HttpContext);
-
-            return new RedirectToPageResult("Login");
+            return LocalRedirect("~/");
         }
     }
 }
