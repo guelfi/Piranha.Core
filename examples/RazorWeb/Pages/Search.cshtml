@@ -6,7 +6,7 @@
         .Where(x => x.Title.Contains(searchTerm, StringComparison.OrdinalIgnoreCase));
 }
 
-<header class="has-image" style="scroll-behavior=">
+<header class="has-image" style="background-image: url('~/assets/img/search.png">
     <div class="dimmer"></div>
     <div class="container text-center">
         <h1>Resultado Pesquisa</h1>
@@ -17,14 +17,18 @@
     </div>
 </header>
 <main class="archive">
-    <div class="container text-center">
-        <ul>
-            @foreach (var item in filteredPosts)
-            {
-                <li>
-                    <a href="@WebApp.Url(item)">@item.Title</a>
-                </li>
-            }
-        </ul>
+    <div class="container">
+        @foreach (var item in filteredPosts)
+        {
+            <div class="row">
+                <article>
+                    <header>
+                        <h3>@item.Title</h3>
+                        <p>@Html.Raw(item.Excerpt)</p>
+                        <a href="@WebApp.Url(item)" class="btn btn-primary">Leia mais</a>
+                    </header>
+                </article>
+            </div>
+        }
     </div>
 </main>
