@@ -6,7 +6,7 @@
         .Where(x => x.Title.Contains(searchTerm, StringComparison.OrdinalIgnoreCase));
 }
 
-<header class="has-image" style="background-image: url('~/assets/img/search.png">
+<header class="has-image" style="background-image: url('~/assets/img/search.png')">
     <div class="dimmer"></div>
     <div class="container text-center">
         <h1>Resultado Pesquisa</h1>
@@ -24,6 +24,14 @@
                 <article>
                     <header>
                         <h3>@item.Title</h3>
+                        <p class="post-meta">
+                            @if (item.IsPublished)
+                            {
+                                <span>
+                                    Publicado @item.Published.Value.ToShortDateString()
+                                </span>
+                            }
+                        </p>
                         <p>@Html.Raw(item.Excerpt)</p>
                         <a href="@WebApp.Url(item)" class="btn btn-primary">Leia mais</a>
                     </header>

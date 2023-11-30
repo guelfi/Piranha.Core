@@ -20,6 +20,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Content Remove="wwwroot\assets\img\eng.png" />
+	  <Content Remove="wwwroot\assets\img\search.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="wwwroot\assets\img\eng.png" />
+	  <None Include="wwwroot\assets\img\search.png" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<ProjectReference Include="..\..\core\Piranha\Piranha.csproj" />
 		<ProjectReference Include="..\..\core\Piranha.AspNetCore\Piranha.AspNetCore.csproj" />
 		<ProjectReference Include="..\..\core\Piranha.AttributeBuilder\Piranha.AttributeBuilder.csproj" />
