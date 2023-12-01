@@ -23,14 +23,14 @@ public static class Menu
         new MenuItem
         {
             InternalId = "Content",
-            Name = "Content",
+            Name = "Conteudo",
             Css = "fas fa-pencil-alt",
             Items = new MenuItemList
             {
                 new MenuItem
                 {
                     InternalId = "Pages",
-                    Name = "Pages",
+                    Name = "Páginas",
                     Route = "~/manager/pages",
                     Policy = Permission.Pages,
                     Css = "fas fa-copy"
@@ -38,7 +38,7 @@ public static class Menu
                 new MenuItem
                 {
                     InternalId = "Media",
-                    Name = "Media",
+                    Name = "Mídias",
                     Route = "~/manager/media",
                     Policy = Permission.Media,
                     Css = "fas fa-images"
@@ -46,38 +46,38 @@ public static class Menu
                 new MenuItem
                 {
                     InternalId = "Comments",
-                    Name = "Comments",
+                    Name = "Comentários",
                     Route = "~/manager/comments",
                     Policy = Permission.Comments,
                     Css = "fas fa-comments"
                 }
             }
         },
-        new MenuItem
-        {
-            InternalId = "Settings",
-            Name = "Settings",
-            Css = "fas fa-wrench",
-            Items = new MenuItemList
-            {
-                new MenuItem
-                {
-                    InternalId = "Aliases", Name = "Aliases", Route = "~/manager/aliases",
-                    Policy = Permission.Aliases, Css = "fas fa-random"
-                }
-            }
-        },
+        //new MenuItem
+        //{
+        //    InternalId = "Settings",
+        //    Name = "Ferramentas",
+        //    Css = "fas fa-wrench",
+        //    Items = new MenuItemList
+        //    {
+        //        new MenuItem
+        //        {
+        //            InternalId = "Aliases", Name = "Atalhos", Route = "~/manager/aliases",
+        //            Policy = Permission.Aliases, Css = "fas fa-random"
+        //        }
+        //    }
+        //},
         new MenuItem
         {
             InternalId = "System",
-            Name = "System",
+            Name = "Sistema",
             Css = "fas fa-cog",
             Items = new MenuItemList
             {
                 new MenuItem
                 {
                     InternalId = "Config",
-                    Name = "Config",
+                    Name = "Configuração",
                     Route = "~/manager/config",
                     Policy = Permission.Config,
                     Css = "fas fa-cogs"

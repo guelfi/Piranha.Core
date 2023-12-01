@@ -25,10 +25,23 @@
                     <header>
                         <h3>@item.Title</h3>
                         <p class="post-meta">
+                            <span>
+                                Tags
+                                @foreach (var tag in item.Tags)
+                                {
+                                    <a href="@item.Permalink.Replace(item.Slug, "")tag/@tag.Slug">#@tag.Slug</a>
+                                }
+                            </span>
                             @if (item.IsPublished)
                             {
                                 <span>
                                     Publicado @item.Published.Value.ToShortDateString()
+                                </span>
+                            }
+                            @if (item.EnableComments && item.CommentCount > 0)
+                            {
+                                <span>
+                                    <a href="@item.Permalink#comments">@item.CommentCount @(item.CommentCount == 1 ? "comentário" : "comentários")</a>
                                 </span>
                             }
                         </p>

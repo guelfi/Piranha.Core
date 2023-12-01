@@ -7,7 +7,7 @@
     ViewBag.MenuItem = "Roles";
 }
 
-@using (var form = Html.BeginForm("Save", "Role", FormMethod.Post, new {@class = "form validate", role = "form", novalidate = ""}))
+@using (var form = Html.BeginForm("Save", "Role", FormMethod.Post, new { @class = "form validate", role = "form", novalidate = "" }))
 {
     @Html.HiddenFor(m => m.Role.Id)
 
@@ -45,7 +45,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>@Localizer.General["Name"]</label>
-                            @Html.TextBoxFor(m => m.Role.Name, new { @class = "form-control small", maxlength = 128, required = ""})
+                            @Html.TextBoxFor(m => m.Role.Name, new { @class = "form-control small", maxlength = 128, required = "" })
                             <div class="invalid-feedback">
                                 @Localizer.General["Name is mandatory."]
                             </div>
@@ -81,49 +81,56 @@
                 <div class="card-body">
                     @foreach (var category in categories)
                     {
+
                         var categoryPermissions = permissions.Where(p => p.Category == category).OrderBy(p => p.Title).ToList();
 
                         <div class="form-group">
                             <ul class="list-group">
                                 @if (!string.IsNullOrWhiteSpace(category))
                                 {
-                                    <li class="list-group-item">
-                                        <strong>@category</strong>
-                                    </li>
-                                }
-                                @for (var n = 0; n < categoryPermissions.Count(); n += 3)
-                                {
-                                    <li class="list-group-item">
-                                        <div class="row">
-                                            <div class="col-sm-4">
-                                                <div class="checkbox">
-                                                    <label class="mb-0">
-                                                        <input type="checkbox" name="SelectedClaims[]" value="@categoryPermissions[n].Name" @(Model.SelectedClaims.Contains(categoryPermissions[n].Name) ? "checked=checked" : "")> @categoryPermissions[n].Title
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            @if (n + 1 < categoryPermissions.Count())
-                                            {
-                                                <div class="col-sm-4">
-                                                    <div class="checkbox">
-                                                        <label class="mb-0">
-                                                            <input type="checkbox" name="SelectedClaims[]" value="@categoryPermissions[n + 1].Name" @(Model.SelectedClaims.Contains(categoryPermissions[n + 1].Name) ? "checked=checked" : "")> @categoryPermissions[n + 1].Title
-                                                        </label>
+                                    if (!category.Contains("Aliases") && !category.Contains("Modules"))
+                                    {
+                                        <li class="list-group-item">
+                                            <strong>@category</strong>
+                                        </li>
+
+                                        @for (var n = 0; n < categoryPermissions.Count(); n += 3)
+                                        {
+
+                                            <li class="list-group-item">
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <div class="checkbox">
+                                                            <label class="mb-0">
+                                                                <input type="checkbox" name="SelectedClaims[]" value="@categoryPermissions[n].Name" @(Model.SelectedClaims.Contains(categoryPermissions[n].Name) ? "checked=checked" : "")> @categoryPermissions[n].Title
+                                                            </label>
+                                                        </div>
                                                     </div>
+                                                    @if (n + 1 < categoryPermissions.Count())
+                                                    {
+                                                        <div class="col-sm-4">
+                                                            <div class="checkbox">
+                                                                <label class="mb-0">
+                                                                    <input type="checkbox" name="SelectedClaims[]" value="@categoryPermissions[n + 1].Name" @(Model.SelectedClaims.Contains(categoryPermissions[n + 1].Name) ? "checked=checked" : "")> @categoryPermissions[n + 1].Title
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                    @if (n + 2 < categoryPermissions.Count())
+                                                    {
+                                                        <div class="col-sm-4">
+                                                            <div class="checkbox">
+                                                                <label class="mb-0">
+                                                                    <input type="checkbox" name="SelectedClaims[]" value="@categoryPermissions[n + 2].Name" @(Model.SelectedClaims.Contains(categoryPermissions[n + 2].Name) ? "checked=checked" : "")> @categoryPermissions[n + 2].Title
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    }
                                                 </div>
-                                            }
-                                            @if (n + 2 < categoryPermissions.Count())
-                                            {
-                                                <div class="col-sm-4">
-                                                    <div class="checkbox">
-                                                        <label class="mb-0">
-                                                            <input type="checkbox" name="SelectedClaims[]" value="@categoryPermissions[n + 2].Name" @(Model.SelectedClaims.Contains(categoryPermissions[n + 2].Name) ? "checked=checked" : "")> @categoryPermissions[n + 2].Title
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            }
-                                        </div>
-                                    </li>
+                                            </li>
+
+                                        }
+                                    }
                                 }
                             </ul>
                         </div>
