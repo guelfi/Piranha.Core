@@ -18,37 +18,46 @@
 </header>
 <main class="archive">
     <div class="container">
-        @foreach (var item in filteredPosts)
+        @if (filteredPosts.Count()>0)
+        {
+            @foreach (var item in filteredPosts)
+            {
+                <div class="row">
+                    <article>
+                        <header>
+                            <h3>@item.Title</h3>
+                            <p class="post-meta">
+                                <span>
+                                    Tags
+                                    @foreach (var tag in item.Tags)
+                                    {
+                                        <a href="@item.Permalink.Replace(item.Slug, "")tag/@tag.Slug">#@tag.Slug</a>
+                                    }
+                                </span>
+                                @if (item.IsPublished)
+                                {
+                                    <span>
+                                        Publicado @item.Published.Value.ToShortDateString()
+                                    </span>
+                                }
+                                @if (item.EnableComments && item.CommentCount > 0)
+                                {
+                                    <span>
+                                        <a href="@item.Permalink#comments">@item.CommentCount @(item.CommentCount == 1 ? "comentário" : "comentários")</a>
+                                    </span>
+                                }
+                            </p>
+                            <p>@Html.Raw(item.Excerpt)</p>
+                            <a href="@WebApp.Url(item)" class="btn btn-primary">Leia mais</a>
+                        </header>
+                    </article>
+                </div>
+            }
+        }
+        else
         {
             <div class="row">
-                <article>
-                    <header>
-                        <h3>@item.Title</h3>
-                        <p class="post-meta">
-                            <span>
-                                Tags
-                                @foreach (var tag in item.Tags)
-                                {
-                                    <a href="@item.Permalink.Replace(item.Slug, "")tag/@tag.Slug">#@tag.Slug</a>
-                                }
-                            </span>
-                            @if (item.IsPublished)
-                            {
-                                <span>
-                                    Publicado @item.Published.Value.ToShortDateString()
-                                </span>
-                            }
-                            @if (item.EnableComments && item.CommentCount > 0)
-                            {
-                                <span>
-                                    <a href="@item.Permalink#comments">@item.CommentCount @(item.CommentCount == 1 ? "comentário" : "comentários")</a>
-                                </span>
-                            }
-                        </p>
-                        <p>@Html.Raw(item.Excerpt)</p>
-                        <a href="@WebApp.Url(item)" class="btn btn-primary">Leia mais</a>
-                    </header>
-                </article>
+                <h3>Não foram encontrados resultados para o termo de pesquisa.</h3>
             </div>
         }
     </div>
