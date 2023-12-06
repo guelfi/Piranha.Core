@@ -8,6 +8,7 @@
  *
  */
 
+using Microsoft.AspNetCore.Components.Forms;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -35,5 +36,12 @@ public static class Utils
             return "https://www.gravatar.com/avatar/" + sb.ToString().ToLower() +
                     (size > 0 ? "?s=" + size : "");
         }
+    }
+
+    public static string GetImageUrl(string nameImage) {
+        var _urlImage = nameImage;
+        //resultado CHUMBADO precisa implementar a busca na pasta upload//
+        _urlImage = "http://23.99.67.69/uploads/e26000cd-4680-4afc-982f-543b44fdc969/purple_210x160.png";
+        return _urlImage;
     }
 }

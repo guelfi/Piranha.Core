@@ -6,9 +6,12 @@
       .Where(x => x.Title.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) || 
         x.Excerpt.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
         x.Slug.Contains(searchTerm, StringComparison.OrdinalIgnoreCase));
+
+    //o retorno do metodo GetImageUrl está CHUMBADO no codigo, precisa implementar//
+    var urlImage = Piranha.AspNetCore.Identity.Utils.GetImageUrl("passar nome da imagem com extensão");
 }
 
-<header class="has-image" style="background-image: url('assets/img/search.png')">
+<header class="has-image" style="background-image: url(@urlImage)">
     <div class="dimmer"></div>
     <div class="container text-center">
         <h1>Resultado Pesquisa</h1>
