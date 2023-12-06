@@ -3,7 +3,9 @@
 @{
     var searchTerm = Request.Query["searchTerm"];
     var filteredPosts = WebApp.Api.Posts.GetAllBySiteIdAsync().Result
-        .Where(x => x.Title.Contains(searchTerm, StringComparison.OrdinalIgnoreCase));
+      .Where(x => x.Title.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) || 
+        x.Excerpt.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
+        x.Slug.Contains(searchTerm, StringComparison.OrdinalIgnoreCase));
 }
 
 <header class="has-image" style="background-image: url('assets/img/search.png')">
