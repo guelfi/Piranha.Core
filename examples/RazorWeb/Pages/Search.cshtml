@@ -1,15 +1,18 @@
 ﻿@page
+@using Microsoft.AspNetCore.Http;
 @model RazorWeb.Pages.SearchModel
 @{
+
+
     var searchTerm = Request.Query["searchTerm"];
     var filteredPosts = WebApp.Api.Posts.GetAllBySiteIdAsync().Result
       .Where(x => x.Title.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) || 
         x.Excerpt.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
-        x.Slug.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)); 
-        //pesquisar o corpo (blocks) e as tags
+        x.Slug.Contains(searchTerm, StringComparison.OrdinalIgnoreCase));
+    //pesquisar o corpo (blocks) e as tags
 
-    //o retorno do metodo GetImageUrl está CHUMBADO no codigo, precisa implementar//
-    var urlImage = Piranha.Utils.GetImageUrl("passar nome da imagem com extensão");
+    var serverPath = HttpContext.Request.Host.Value;
+    var urlImage = Piranha.Utils.GetImageUrl(serverPath, "purple.png");
 }
 
 <header class="has-image" style="background-image: url(@urlImage)">

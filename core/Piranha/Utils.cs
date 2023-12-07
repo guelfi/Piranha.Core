@@ -10,10 +10,12 @@
 
 using System.Collections;
 using System.Globalization;
+using System.Net.Http;
 using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
+using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using Piranha.Extend;
 using Piranha.Runtime;
@@ -775,12 +777,10 @@ public static class Utils
         }
     }
 
-    public static string GetImageUrl(string nameImage)
+    public static string GetImageUrl(string serverPath, string nameImage)
     {
-        var _urlImage = nameImage;
         //resultado CHUMBADO precisa implementar a busca na pasta upload//
-        _urlImage = "http://23.99.67.69/uploads/e26000cd-4680-4afc-982f-543b44fdc969/purple_210x160.png";
-        return _urlImage;
+        return "http://" + serverPath + "/uploads/" + "6e0da7aa-fd28-4af5-9cbe-ea9546622e88/" + @nameImage;
     }
 
     /// <summary>
