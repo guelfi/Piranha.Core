@@ -2,8 +2,6 @@
 @using Microsoft.AspNetCore.Http;
 @model RazorWeb.Pages.SearchModel
 @{
-
-
     var searchTerm = Request.Query["searchTerm"];
     var filteredPosts = WebApp.Api.Posts.GetAllBySiteIdAsync().Result
       .Where(x => x.Title.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) || 
