@@ -2,15 +2,14 @@
 @using Microsoft.AspNetCore.Http;
 @model RazorWeb.Pages.SearchModel
 @{
-    var serverPath = HttpContext.Request.Host.Value;
     var searchTerm = Request.Query["searchTerm"];
     var filteredPosts = WebApp.Api.Posts.GetAllBySiteIdAsync().Result
       .Where(x => x.Title.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) || 
         x.Excerpt.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
         x.Slug.Contains(searchTerm, StringComparison.OrdinalIgnoreCase));
     //pesquisar o corpo (blocks) e as tags
-    
-    var urlImage = Piranha.Utils.GetImage(serverPath, "purple.png");
+
+    var urlImage = Piranha.Utils.GetImage(HttpContext.Request.Host.Value, "nebulosa.png");
 }
 
 
