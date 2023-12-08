@@ -10,6 +10,7 @@
 
 using System.Collections;
 using System.Globalization;
+using System.Net;
 using System.Net.Http;
 using System.Reflection;
 using System.Security.Cryptography;
@@ -18,6 +19,7 @@ using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using Piranha.Extend;
+using Piranha.Models;
 using Piranha.Runtime;
 
 namespace Piranha;
@@ -777,10 +779,50 @@ public static class Utils
         }
     }
 
-    public static string GetImageUrl(string serverPath, string nameImage)
+    public static string GetImage(string serverPath, string nameImage)
     {
-        //resultado CHUMBADO precisa implementar a busca na pasta upload//
-        return "http://" + serverPath + "/uploads/" + "6e0da7aa-fd28-4af5-9cbe-ea9546622e88/" + @nameImage;
+        string folder = "wwwroot\\uploads\\";
+        string pathImage = LocalizeImage(serverPath, folder, nameImage);
+
+        if (pathImage != null)
+        {
+            string folderPath = Path.GetDirectoryName(pathImage).Replace("\\", "/").Replace("wwwroot", "/");
+
+            pathImage = "http://" + serverPath + $"{folderPath}/" + nameImage;
+        }
+        return pathImage;
+    }
+
+    public static string LocalizeImage(string serverPath, string folder, string nameImage)
+    {
+        try
+        {
+            string[] archives = Directory.GetFiles(folder);
+
+            foreach (string archive in archives)
+            {
+                if (Path.GetFileName(archive).Equals(nameImage, StringComparison.OrdinalIgnoreCase))
+                {
+                    return archive;
+                }
+            }
+
+            string[] subfolders = Directory.GetDirectories(folder);
+
+            foreach (string subfolder in subfolders)
+            {
+                string path = LocalizeImage(serverPath, subfolder, nameImage);
+                if (path != null)
+                {
+                    return path;
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            return $"Erro ao acessar diretorio: {ex.Message}";
+        }
+        return null;
     }
 
     /// <summary>
@@ -984,7 +1026,7 @@ public static class Utils
         var settingsAttr = prop.GetCustomAttribute<FieldSettingsAttribute>();
         if (settingsAttr != null)
         {
-            foreach (var setting in settingsAttr.GetType().GetProperties(BindingFlags.Instance|BindingFlags.Public|BindingFlags.DeclaredOnly))
+            foreach (var setting in settingsAttr.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.DeclaredOnly))
             {
                 if (settings.TryGetValue(setting.Name, out var existing))
                 {
