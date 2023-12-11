@@ -12,13 +12,6 @@
 		</PackageReference>
 	</ItemGroup>
 
-	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0'">
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.0">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-		</PackageReference>
-	</ItemGroup>
-
 	<ItemGroup>
 	  <Content Remove="wwwroot\assets\img\eng.png" />
 	  <Content Remove="wwwroot\assets\img\search.png" />
