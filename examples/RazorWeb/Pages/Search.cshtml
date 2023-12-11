@@ -7,7 +7,8 @@
     .Where(x =>
         (x.Title != null && x.Title.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)) ||
         (x.Excerpt != null && x.Excerpt.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)) ||
-        (x.Slug != null && x.Slug.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)));
+        (x.Slug != null && x.Slug.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)) ||
+        (x.Tags != null && x.Tags.Any(tag => tag.Title.Contains(searchTerm, StringComparison.OrdinalIgnoreCase))));
 
     var urlImage = Piranha.Utils.GetImage(HttpContext.Request.Host.Value, "nebulosa.png");
 }
