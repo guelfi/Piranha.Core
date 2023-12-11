@@ -4,10 +4,10 @@
 @{
     var searchTerm = Request.Query["searchTerm"];
     var filteredPosts = WebApp.Api.Posts.GetAllBySiteIdAsync().Result
-      .Where(x => x.Title.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) || 
-        x.Excerpt.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
-        x.Slug.Contains(searchTerm, StringComparison.OrdinalIgnoreCase));
-    //pesquisar o corpo (blocks) e as tags
+    .Where(x =>
+        (x.Title != null && x.Title.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)) ||
+        (x.Excerpt != null && x.Excerpt.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)) ||
+        (x.Slug != null && x.Slug.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)));
 
     var urlImage = Piranha.Utils.GetImage(HttpContext.Request.Host.Value, "nebulosa.png");
 }
