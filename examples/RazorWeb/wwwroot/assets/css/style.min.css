@@ -8,7 +8,10 @@ body {
 }
 
 main {
-    padding: 2rem 0
+    position: relative;
+    padding: 2rem 0;
+    z-index: 0;
+    margin-bottom: 60px;
 }
 
 img {
@@ -86,6 +89,12 @@ blockquote {
             width: 1em;
             height: 1em
         }
+
+@media (max-width:991px) {
+    .navbar.fixed-top .navbar-nav {
+        font-size: .720rem;
+    }
+}
 
 @media (max-width:767px) {
     .navbar.fixed-top .container {
@@ -195,4 +204,34 @@ header {
     display: flex;
     justify-content: space-between;
     margin-left: 10px;
+}
+
+.border-top {
+    position: fixed;
+    background-color: #eee;
+    display: flex;
+    justify-content: space-between;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.footer-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+}
+
+@media (max-width: 768px) {
+    .footer-row {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 667px) {
+    .footer-row {
+        font-size: 9px;
+    }
 }
