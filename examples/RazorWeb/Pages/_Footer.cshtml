@@ -1,0 +1,24 @@
+﻿@using Microsoft.AspNetCore.Http;
+@{
+    var httpRequest = Context.Request;
+    var urlImage = Piranha.Utils.GetImage(httpRequest.Host.Value, "lis2b.png");
+}
+
+<head>
+    <link rel="stylesheet" href="~/assets/css/style.min.css" asp-append-version="true">
+</head>
+
+<body>
+    <footer class="border-top footer text-muted">
+        <div class="footer-row">
+            <div class="col-4">
+                <img src="@urlImage" width="50", height="50"/> 
+                @* Não foi possivel utilizar o metodo de ResizeImage pois ele espera um tipo ImageField *@
+            </div>
+
+            <div class="col-4">
+                <p>Base de conhecimento 2023 - LIS2B ©</p>
+            </div>
+        </div>
+    </footer>
+</body>

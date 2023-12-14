@@ -206,18 +206,14 @@ header {
     margin-left: 10px;
 }
 
-.border-top {
-    position: fixed;
+.footer-row{
+    padding-left: 100px;
     background-color: #eee;
-    display: flex;
-    justify-content: space-between;
+    position: fixed;
     bottom: 0;
     right: 0;
     left: 0;
     z-index: 1;
-}
-
-.footer-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
