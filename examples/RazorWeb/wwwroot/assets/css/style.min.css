@@ -207,7 +207,6 @@ header {
 }
 
 .footer-row{
-    padding-left: 100px;
     background-color: #eee;
     position: fixed;
     bottom: 0;
@@ -216,7 +215,7 @@ header {
     z-index: 1;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     height: 50px;
 }
 
