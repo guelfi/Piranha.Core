@@ -1,0 +1,97 @@
+@{
+    Layout = null;
+}
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Setup CSS -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Raleway:wght@700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,400">
+
+    <style>
+        body {
+            background: #f4f4f4;
+            font-family: Lato,sans-serif;
+        }
+
+        h2 {
+            font-family: Raleway,sans-serif;
+            margin: 2rem 0;
+        }
+
+        code {
+            font-size: 82.5%;
+            margin: 0 .25rem;
+        }
+
+        a {
+            color: #06a3d8;
+        }
+
+            a:hover {
+                color: #0693c8;
+            }
+
+        img {
+            width: 25%;
+        }
+
+        .card {
+            border: 0 none;
+            margin-top: 5rem;
+            box-shadow: 0 .5rem 1rem rgba(0,0,0,.05);
+        }
+
+        .btn-primary {
+            background-color: #06a3d8;
+            border-color: #06a3d8;
+        }
+
+            .btn-primary:hover {
+                background-color: #0693c8;
+                border-color: #0693c8;
+            }
+    </style>
+
+    <title>Bem Vindo</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-7 col-sm-12 text-center">
+                <div class="card p-md-5">
+                    <div class="card-body">
+                        <h2>Bem-vindo</h2>
+                        <p class="lead">
+                            Obrigado por usar nosso Gerenciador de Conte&#250;do.
+                        </p>
+                        <p>
+                            Voc&#234; pode fazer login no painel de administrador usando as credenciais:
+                        </p>
+                        <p><code>admin/password</code></p>
+                        <p>
+                            Se voc&#234; quiser, podemos criar um conte&#250;do de modelo,
+                            o que fornecer&#225; um exemplo de como criar e estruturar o CMS.
+                        </p>
+                        <p>
+                            Depois de terminar com a configura&#231;&#227;o, voc&#234; pode excluir o <code> SetupController </code>
+                            e o diret&#243;rio <code> ~/seed </code> do seu projeto.
+                        </p>
+                        <p class="mt-5">
+                            <a href="@Url.Action("Seed")" class="btn btn-primary btn-sm">Criar conte&#250;do de modelo</a>
+                            <a href="~/manager/login" class="btn btn-primary btn-sm">Leve-me ao gerenciador</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
