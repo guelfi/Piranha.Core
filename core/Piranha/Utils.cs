@@ -795,33 +795,27 @@ public static class Utils
 
     public static string LocalizeImage(string serverPath, string folder, string nameImage)
     {
-        try
+        string[] archives = Directory.GetFiles(folder);
+
+        foreach (string archive in archives)
         {
-            string[] archives = Directory.GetFiles(folder);
-
-            foreach (string archive in archives)
+            if (Path.GetFileName(archive).Equals(nameImage, StringComparison.OrdinalIgnoreCase))
             {
-                if (Path.GetFileName(archive).Equals(nameImage, StringComparison.OrdinalIgnoreCase))
-                {
-                    return archive;
-                }
-            }
-
-            string[] subfolders = Directory.GetDirectories(folder);
-
-            foreach (string subfolder in subfolders)
-            {
-                string path = LocalizeImage(serverPath, subfolder, nameImage);
-                if (path != null)
-                {
-                    return path;
-                }
+                return archive;
             }
         }
-        catch (Exception ex)
+
+        string[] subfolders = Directory.GetDirectories(folder);
+
+        foreach (string subfolder in subfolders)
         {
-            return $"Erro ao acessar diretorio: {ex.Message}";
+            string path = LocalizeImage(serverPath, subfolder, nameImage);
+            if (path != null)
+            {
+                return path;
+            }
         }
+
         return null;
     }
 
