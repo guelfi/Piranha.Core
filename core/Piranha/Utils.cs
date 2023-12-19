@@ -788,7 +788,7 @@ public static class Utils
         {
             string folderPath = Path.GetDirectoryName(pathImage).Replace("\\", "/").Replace("wwwroot", "/");
 
-            pathImage = "http://" + serverPath + $"{folderPath}/" + nameImage;
+            pathImage = "http://" + serverPath + $"{folderPath.Replace("//uploads", "/uploads")}/" + nameImage;
         }
         return pathImage;
     }

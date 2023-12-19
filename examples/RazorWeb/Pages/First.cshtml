@@ -1,7 +1,7 @@
 ﻿@page
 @model RazorWeb.Pages.FirstModel
 @{
-    var urlImage = Piranha.Utils.GetImage(HttpContext.Request.Host.Value, "bird.jpg");
+    var urlImage = RazorWeb.Utils.GetImage(HttpContext.Request.Host.Value, "bird.jpg");
 }
 <header class="has-image" style="background-image: url(@urlImage)">
     <div class="dimmer"></div>

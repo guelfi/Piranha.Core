@@ -29,22 +29,19 @@ builder.AddPiranha(options =>
     options.UseEF<SQLiteDb>(db => db.UseSqlite(connectionString));
     options.UseIdentityWithSeed<IdentitySQLiteDb>(db => db.UseSqlite(connectionString));
 
-    /**
-     * Here you can configure the different permissions
-     * that you want to use for securing content in the
-     * application.
-    options.UseSecurity(o =>
-    {
-        o.UsePermission("WebUser", "Web User");
-    });
-     */
+    //* Here you can configure the different permissions
+    //* that you want to use for securing content in the
+    //* application.
+    //options.UseSecurity(o =>
+    //{
+    //    o.UsePermission("WebUser", "Web User");
+    //});
+    
+    //* Here you can specify the login url for the front end
+    //* application. This does not affect the login url of
+    //* the manager interface.
+    //options.LoginUrl = "login";
 
-    /**
-     * Here you can specify the login url for the front end
-     * application. This does not affect the login url of
-     * the manager interface.
-    options.LoginUrl = "login";
-     */
 });
 
 var app = builder.Build();
@@ -53,6 +50,13 @@ if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
 }
+
+// Custom permissions
+App.Permissions["App"].Add(new Piranha.Security.PermissionItem
+{
+    Title = "Read secured posts",
+    Name = "ReadSecuredPosts"
+});
 
 app.UsePiranha(options =>
 {
@@ -67,6 +71,17 @@ app.UsePiranha(options =>
 
     // Configure Tiny MCE
     EditorConfig.FromFile("editorconfig.json");
+
+    // Custom middleware that checks for status 401
+    app.Use(async (ctx, next) =>
+    {
+        await next();
+
+        if (ctx.Response.StatusCode == 401)
+        {
+            ctx.Response.Redirect("/login");
+        }
+    });
 
     options.UseManager();
     options.UseTinyMCE();
