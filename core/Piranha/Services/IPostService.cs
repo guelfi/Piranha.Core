@@ -45,6 +45,8 @@ public interface IPostService
     /// <returns>The posts</returns>
     Task<IEnumerable<DynamicPost>> GetAllBySiteIdAsync(Guid? siteId = null);
 
+    Task<IEnumerable<DynamicPost>> Search(string searchTerm);
+
     /// <summary>
     /// Gets the available post items.
     /// </summary>

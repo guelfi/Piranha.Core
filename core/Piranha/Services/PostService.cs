@@ -9,6 +9,9 @@
  */
 
 using System.ComponentModel.DataAnnotations;
+using Markdig.Syntax;
+using Piranha.Extend;
+using Piranha.Extend.Blocks;
 using Piranha.Models;
 using Piranha.Repositories;
 
@@ -134,6 +137,39 @@ public class PostService : IPostService
     public Task<IEnumerable<DynamicPost>> GetAllBySiteIdAsync(Guid? siteId = null)
     {
         return GetAllBySiteIdAsync<DynamicPost>(siteId);
+    }
+
+    public async Task<IEnumerable<DynamicPost>> Search(string searchTerm)
+    {
+        var posts = await GetAllBySiteIdAsync<DynamicPost>();
+        
+        var filteredPosts = posts
+         .Where(x =>
+             (x.Title != null && x.Title.Contains(searchTerm.Trim(), StringComparison.OrdinalIgnoreCase)) ||
+             (x.Excerpt != null && x.Excerpt.Contains(searchTerm.Trim(), StringComparison.OrdinalIgnoreCase)) ||
+             (x.Slug != null && x.Slug.Contains(searchTerm.Trim(), StringComparison.OrdinalIgnoreCase)) ||
+             (x.Tags != null && x.Tags.Any(tag => tag.Title.Contains(searchTerm.Trim(), StringComparison.OrdinalIgnoreCase))))
+         .ToList();
+
+        foreach (var post in posts)
+        {
+            foreach (var block in post.Blocks)
+            {
+                if (block is ISearchable searchableBlock)
+                {
+                    var blockContent = searchableBlock.GetIndexedContent();
+                    if (!string.IsNullOrEmpty(blockContent) && blockContent.Contains(searchTerm.Trim(), StringComparison.OrdinalIgnoreCase))
+                    {
+                        filteredPosts.Add(post);
+                        break; 
+                    }
+                }
+                
+            }
+
+        }
+
+        return filteredPosts;
     }
 
     /// <summary>

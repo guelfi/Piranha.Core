@@ -3,6 +3,7 @@
 	<PropertyGroup>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<GenerateDocumentationFile>false</GenerateDocumentationFile>
+		<TargetFrameworks>net6.0</TargetFrameworks>
 	</PropertyGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">

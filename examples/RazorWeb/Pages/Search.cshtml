@@ -2,12 +2,7 @@
 @model RazorWeb.Pages.SearchModel
 @{
     var searchTerm = Request.Query["searchTerm"];
-    var filteredPosts = WebApp.Api.Posts.GetAllBySiteIdAsync().Result
-    .Where(x =>
-        (x.Title != null && x.Title.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)) ||
-        (x.Excerpt != null && x.Excerpt.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)) ||
-        (x.Slug != null && x.Slug.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)) ||
-        (x.Tags != null && x.Tags.Any(tag => tag.Title.Contains(searchTerm, StringComparison.OrdinalIgnoreCase))));
+    var filteredPosts = WebApp.Api.Posts.Search(searchTerm).Result;
 
     var urlImage = Piranha.Utils.GetImage(HttpContext.Request.Host.Value, "nebulosa.png");
 }
