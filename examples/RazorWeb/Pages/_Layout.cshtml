@@ -1,7 +1,7 @@
 @{
     var version = Piranha.Utils.GetAssemblyVersion(typeof(Piranha.App).Assembly);
     var nameSite = WebApp.Api.Sites.GetDefaultAsync().Result.Title;
-    var urlImage = RazorWeb.Utils.GetImage(Context.Request.Host.Value, "logo_LIS2b.png");
+    var urlImage = Piranha.Utils.GetImage(Context.Request.Host.Value, "logo_LIS2b.png");
     version = version.Substring(0, version.LastIndexOf("."));
 }
 <!doctype html>

@@ -9,7 +9,7 @@
         (x.Slug != null && x.Slug.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)) ||
         (x.Tags != null && x.Tags.Any(tag => tag.Title.Contains(searchTerm, StringComparison.OrdinalIgnoreCase))));
 
-    var urlImage = RazorWeb.Utils.GetImage(HttpContext.Request.Host.Value, "nebulosa.png");
+    var urlImage = Piranha.Utils.GetImage(HttpContext.Request.Host.Value, "nebulosa.png");
 }
 
 <header class="has-image" style="background-image: url(@urlImage)">
