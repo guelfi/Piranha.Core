@@ -781,14 +781,20 @@ public static class Utils
 
     public static string GetImage(string serverPath, string nameImage)
     {
-        string folder = "wwwroot\\uploads\\";
+        string folder = Path.GetFullPath("wwwroot\\uploads");
         string pathImage = LocalizeImage(serverPath, folder, nameImage);
 
         if (pathImage != null)
         {
             string folderPath = Path.GetDirectoryName(pathImage).Replace("\\", "/").Replace("wwwroot", "/");
+            int startIndex = folderPath.IndexOf("//uploads");
+            if (startIndex == -1)
+            {
+                return folderPath.Replace("//uploads", "/uploads");
+            }
+            string finalPath = folderPath.Substring(startIndex);
 
-            pathImage = "http://" + serverPath + $"{folderPath.Replace("//uploads", "/uploads")}/" + nameImage;
+            pathImage = "http://" + serverPath + $"{finalPath.Replace("//uploads", "/uploads")}/" + nameImage;
         }
         return pathImage;
     }
@@ -797,6 +803,11 @@ public static class Utils
     {
         try
         {
+            if (!folder.Contains("uploads"))
+            {
+                folder = $"{folder}\\" + "wwwroot\\uploads\\";
+            }
+
             string[] archives = Directory.GetFiles(folder);
 
             foreach (string archive in archives)
@@ -817,6 +828,10 @@ public static class Utils
                     return path;
                 }
             }
+
+
+
+
         }
         catch (Exception ex)
         {
