@@ -6,12 +6,10 @@ using Piranha.Data.EF.SQLite;
 using Piranha.Manager.Editor;
 using RazorWeb;
 
-
 var builder = WebApplication.CreateBuilder(args);
 var startup = new Startup();
 
 startup.ConfigureServices(builder.Services);
-
 
 builder.AddPiranha(options =>
 {
@@ -50,11 +48,8 @@ builder.AddPiranha(options =>
 
 });
 
-
-
 var app = builder.Build();
 startup.Configure(app);
-
 
 if (app.Environment.IsDevelopment())
 {

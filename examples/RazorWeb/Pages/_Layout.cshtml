@@ -45,9 +45,9 @@
                             <a class="nav-link" href="@WebApp.Url(item)">@item.MenuTitle</a>
                         </li>
                     }
-                    <li class="nav-item">
+                    @*<li class="nav-item">
                         <a class="nav-link" href="/manager">Painel</a>
-                    </li>
+                    </li>*@
                 </ul>
             </div>
         </div>
@@ -59,7 +59,7 @@
 
     <div class="footer">
         <div class="left-column">
-            <img src="@urlImage">
+            <a href="~/"><img src="@urlImage"></a>
         </div>
         <div class="right-column">
             <p>Base de conhecimento - LIS2B &copy; - @DateTime.Now.Year</p>

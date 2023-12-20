@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace RazorWeb.Pages
 {
-    public class FirstModel : PageModel
+    public class VagasModel : PageModel
     {
         public void OnGet()
         {
