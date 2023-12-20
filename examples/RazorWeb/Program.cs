@@ -4,8 +4,14 @@ using Piranha.AspNetCore.Identity.SQLite;
 using Piranha.AttributeBuilder;
 using Piranha.Data.EF.SQLite;
 using Piranha.Manager.Editor;
+using RazorWeb;
+
 
 var builder = WebApplication.CreateBuilder(args);
+var startup = new Startup();
+
+startup.ConfigureServices(builder.Services);
+
 
 builder.AddPiranha(options =>
 {
@@ -44,19 +50,16 @@ builder.AddPiranha(options =>
 
 });
 
+
+
 var app = builder.Build();
+startup.Configure(app);
+
 
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
 }
-
-// Custom permissions
-App.Permissions["App"].Add(new Piranha.Security.PermissionItem
-{
-    Title = "Read secured posts",
-    Name = "ReadSecuredPosts"
-});
 
 app.UsePiranha(options =>
 {
@@ -71,21 +74,6 @@ app.UsePiranha(options =>
 
     // Configure Tiny MCE
     EditorConfig.FromFile("editorconfig.json");
-
-    // Custom middleware that checks for status 401
-    app.Use(async (ctx, next) =>
-    {
-        await next();
-
-        if (ctx.Response.StatusCode == 401)
-        {
-            ctx.Response.Redirect("/login");
-        }
-    });
-
-    options.UseManager();
-    options.UseTinyMCE();
-    options.UseIdentity();
 });
 app.UseForwardedHeaders();
 app.Run();
