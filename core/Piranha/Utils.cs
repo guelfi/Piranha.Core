@@ -781,7 +781,7 @@ public static class Utils
 
     public static string GetImage(string serverPath, string nameImage)
     {
-        string folder = Path.GetFullPath("/home/adminlean/baseconhecimento");
+        string folder = Path.GetFullPath("wwwroot\\uploads");
         string pathImage = LocalizeImage(serverPath, folder, nameImage);
 
         if (pathImage != null)
