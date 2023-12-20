@@ -781,7 +781,7 @@ public static class Utils
 
     public static string GetImage(string serverPath, string nameImage)
     {
-        string folder = Path.GetFullPath("wwwroot\\uploads");
+        string folder = Path.GetFullPath("/home/adminlean/baseconhecimento");
         string pathImage = LocalizeImage(serverPath, folder, nameImage);
 
         if (pathImage != null)
@@ -803,6 +803,11 @@ public static class Utils
     {
         try
         {
+            if (!folder.Contains("uploads"))
+            {
+                folder = $"{folder}\\" + "wwwroot\\uploads\\";
+            }
+
             string[] archives = Directory.GetFiles(folder);
 
             foreach (string archive in archives)
@@ -823,6 +828,10 @@ public static class Utils
                     return path;
                 }
             }
+
+
+
+
         }
         catch (Exception ex)
         {
