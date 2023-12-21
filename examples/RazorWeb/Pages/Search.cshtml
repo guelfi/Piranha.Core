@@ -4,10 +4,11 @@
     var searchTerm = Request.Query["searchTerm"];
     var filteredPosts = WebApp.Api.Posts.Search(searchTerm).Result;
 
-    var urlImage = Piranha.Utils.GetImage(HttpContext.Request.Host.Value, "purple.png");
+    //var urlImage = Piranha.Utils.GetImage(HttpContext.Request.Host.Value, "purple.png");
+    var urlImage = await WebApp.Api.Media.GetMediaAsync("purple.png");
 }
 
-<header class="has-image" style="background-image: url(@Url.Content("~/assets/img/purple.png"))">
+<header class="has-image" style="background-image: url(@Url.Content(@urlImage))">
     <div class="dimmer"></div>
     <div class="container text-center">
         <h1>Resultado Pesquisa</h1>

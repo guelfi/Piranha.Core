@@ -1,7 +1,9 @@
 @{
     var version = Piranha.Utils.GetAssemblyVersion(typeof(Piranha.App).Assembly);
     var nameSite = WebApp.Api.Sites.GetDefaultAsync().Result.Title;
-    var urlImage = Piranha.Utils.GetImage(Context.Request.Host.Value, "logo_LIS2b.png");
+    //var urlImage = Piranha.Utils.GetImage(Context.Request.Host.Value, "logo_LIS2b.png");
+    var urlImage = await WebApp.Api.Media.GetMediaAsync("logo_LIS2b.png");
+
     version = version.Substring(0, version.LastIndexOf("."));
 }
 <!doctype html>
@@ -59,7 +61,7 @@
 
     <div class="footer">
         <div class="left-column">
-            <a href="~/"><img src="@Url.Content("~/assets/img/logo_LIS2b.png")" alt="LIS2B sua melhor solução" /></a>
+            <a href="~/"><img src="@Url.Content(@urlImage)" alt="LIS2B sua melhor solução" /></a>
         </div>
         <div class="right-column">
             <p>Base de conhecimento - LIS2B &copy; - @DateTime.Now.Year</p>
