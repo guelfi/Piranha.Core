@@ -3,7 +3,7 @@
 @{
     var urlImage = Piranha.Utils.GetImage(HttpContext.Request.Host.Value, "horizon.jpg");
 }
-<header class="has-image" style="background-image: url(@urlImage)">
+<header class="has-image" style="background-image: url(@Url.Content("~/assets/img/horizon.jpg"))">
     <div class="dimmer"></div>
     <div class="container text-center">
         <h1>Cadastro de Vagas</h1>
