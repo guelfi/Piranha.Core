@@ -291,3 +291,6 @@ _Pvt_Extensions
 /examples/RazorWeb/piranha.db
 /examples/RazorWeb/piranha.db-shm
 /examples/RazorWeb/piranha.db-wal
+/examples/RazorWeb/piranha.db
+/examples/RazorWeb/piranha.db-shm
+/examples/RazorWeb/piranha.db-wal
