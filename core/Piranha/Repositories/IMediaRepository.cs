@@ -14,6 +14,8 @@ namespace Piranha.Repositories;
 
 public interface IMediaRepository
 {
+
+    Task<IEnumerable<Media>> GetAll();
     /// <summary>
     /// Gets all media available in the specified folder.
     /// </summary>

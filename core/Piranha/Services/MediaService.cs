@@ -42,6 +42,16 @@ public class MediaService : IMediaService
         _cache = cache;
     }
 
+    public async Task<string> GetMediaAsync(string fileName)
+    {
+        var medias = await _repo.GetAll();
+        var media = medias.FirstOrDefault(x => x.Filename == fileName);
+
+        var url = GetPublicUrl(media);
+
+        return url;
+    }
+
     //Separated this into its own thing in case it needed to get reused elsewhere.
     private async Task<IEnumerable<Media>> _getFast(IEnumerable<Guid> ids)
     {
@@ -670,4 +680,6 @@ public class MediaService : IMediaService
             return _storage.GetPublicUrl(media, name);
         }
     }
+
+    
 }
