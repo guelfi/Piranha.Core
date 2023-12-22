@@ -208,6 +208,110 @@ header {
 
 .footer {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: #eee;
+    padding: 10px;
+    position: fixed;
+    height: auto;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+
+    .footer .login {
+        flex: 1;
+        text-align: center;
+        justify-content: flex-end;
+        /*margin-bottom: 10px;*/
+    }
+
+    .footer .left-column {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        white-space: nowrap;
+        margin: 0;
+        width: 50%;
+    }
+
+    .footer .right-column {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        margin-bottom: -10px;
+        width: 50%;
+    }
+
+    .footer img {
+        width: 31px;
+        height: 28px;
+        margin-left: -7px;
+    }
+
+    .footer .conectedPerson {
+        white-space: nowrap;
+        margin: 0;
+        align-items: center;
+    }
+
+    .footer .login {
+        color: #333;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+    }
+
+    .footer .copyright {
+        margin-right: 10px;
+    }
+
+    /* Utilize o seletor de irmão adjacente para estilizar .right-column quando .login está presente */
+/*    .footer .login + .right-column {
+        justify-content: flex-end;
+    }*/
+
+    /* Adicione a propriedade order para ajustar a ordem dos elementos */
+    /*.footer .login {
+        order: 1;
+    }*/
+
+    .footer.authenticated .right-column {
+        align-items: flex-end;
+    }
+
+@media screen and (max-width: 600px) {
+/*    .footer .left-column,
+    .footer .right-column,*/
+    .footer .login {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .footer .right-column {
+        justify-content: flex-end;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*.footer {
+    display: flex;
     justify-content: space-between;
     background-color: #eee;
     padding: 10px;
@@ -259,9 +363,9 @@ header {
     }
 
     .footer img {
-        width: 100px;
-        height: 24px;
-        margin-left: 10px;
+        width: 31px;
+        height: 28px;
+        margin-left: -7px;
     }
 
 .footer .copyright {
@@ -279,4 +383,4 @@ header {
     .footer-row {
         font-size: 9px;
     }
-}
+}*/
