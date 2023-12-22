@@ -3,8 +3,6 @@
 @{
     var searchTerm = Request.Query["searchTerm"];
     var filteredPosts = WebApp.Api.Posts.Search(searchTerm).Result;
-
-    //var urlImage = Piranha.Utils.GetImage(HttpContext.Request.Host.Value, "purple.png");
     var urlImage = await WebApp.Api.Media.GetMediaAsync("purple.png");
 }
 

@@ -684,6 +684,4 @@ public class MediaService : IMediaService
             return _storage.GetPublicUrl(media, name);
         }
     }
-
-
 }

@@ -1,6 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Http;
 @{
-    var urlImage = Piranha.Utils.GetImage(Context.Request.Host.Value, "logo_lis2b.png");
+    var urlImage = await WebApp.Api.Media.GetMediaAsync("logo_LIS2b.png");
 }
 
 <head>

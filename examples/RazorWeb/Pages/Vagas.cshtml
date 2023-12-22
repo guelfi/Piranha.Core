@@ -1,9 +1,7 @@
 ﻿@page
 @model RazorWeb.Pages.VagasModel
 @{
-    //var urlImage = Piranha.Utils.GetImage(HttpContext.Request.Host.Value, "horizon.jpg");
     var urlImage = await WebApp.Api.Media.GetMediaAsync("horizon.jpg");
-
 }
 <header class="has-image" style="background-image: url(@Url.Content(@urlImage))">
     <div class="dimmer"></div>
