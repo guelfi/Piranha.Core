@@ -44,10 +44,14 @@ public class MediaService : IMediaService
 
     public async Task<string> GetMediaAsync(string fileName)
     {
+        string url;
         var medias = await _repo.GetAll();
         var media = medias.FirstOrDefault(x => x.Filename == fileName);
 
-        var url = GetPublicUrl(media);
+        if (media is not null)
+            url = GetPublicUrl(media);
+        else
+            url = "~/assets/img/noimage.png";
 
         return url;
     }
@@ -681,5 +685,5 @@ public class MediaService : IMediaService
         }
     }
 
-    
+
 }
