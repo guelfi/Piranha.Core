@@ -14,6 +14,8 @@ namespace Piranha.Services;
 
 public interface IMediaService
 {
+    Task<string> GetMediaAsync(string fileName);
+
     /// <summary>
     /// Gets all media available in the specified folder.
     /// </summary>

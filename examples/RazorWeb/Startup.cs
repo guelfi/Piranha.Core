@@ -21,13 +21,12 @@ namespace RazorWeb
 
         public void Configure(IApplicationBuilder app)
         {
-
             app.UseAuthentication();
             app.UseAuthorization();
 
             App.Permissions["App"].Add(new Piranha.Security.PermissionItem
             {
-                Title = "Read secured posts",
+                Title = "Necessário Autenticação",
                 Name = "ReadSecuredPosts"
             });
 
@@ -57,7 +56,5 @@ namespace RazorWeb
                 options.UseIdentity();
             });
         }
-
-
     }
 }

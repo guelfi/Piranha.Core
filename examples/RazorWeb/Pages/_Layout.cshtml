@@ -3,8 +3,8 @@
 
 @{
     var version = Piranha.Utils.GetAssemblyVersion(typeof(Piranha.App).Assembly);
+    var urlImage = await WebApp.Api.Media.GetMediaAsync("logo_LIS2b.png");
     var nameSite = WebApp.Api.Sites.GetDefaultAsync().Result.Title;
-    var urlImage = Piranha.Utils.GetImage(Context.Request.Host.Value, "logo_LIS2b.png");
     version = version.Substring(0, version.LastIndexOf("."));
     var logout = Piranha.App.Modules.Manager().LogoutUrl;
 }
@@ -52,9 +52,9 @@
                             <a class="nav-link" href="@WebApp.Url(item)">@item.MenuTitle</a>
                         </li>
                     }
-                    <li class="nav-item">
+                    @*<li class="nav-item">
                         <a class="nav-link" href="/manager">Painel</a>
-                    </li>
+                    </li>*@
                 </ul>
             </div>
         </div>
@@ -66,8 +66,7 @@
 
     <div class="footer @if (User.Identity.IsAuthenticated) {<text>authenticated</text>}">
         <div class="left-column">
-            <img src="@Url.Content("~/assets/img/eng.png")" />
-            <span>LIS2B sua melhor solucao</span>
+            <a href="~/"><img src="@Url.Content(@urlImage)" alt="LIS2B sua melhor solução" /></a>
         </div>
         <div class="right-column">
             <p>Base de conhecimento - LIS2B &copy; - @DateTime.Now.Year</p>

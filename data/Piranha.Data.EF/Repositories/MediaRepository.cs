@@ -33,6 +33,41 @@ public class MediaRepository : IMediaRepository
         _db = db;
     }
 
+    public async Task<IEnumerable<Models.Media>> GetAll()
+    {
+        var mediasModel = new List<Models.Media>();
+
+        var medias = await _db.Media
+             .AsNoTracking()
+             .ToListAsync()
+             .ConfigureAwait(false);
+
+        foreach (var media in medias)
+        {
+
+            var mediaModel = new Models.Media();
+
+            mediaModel.Id = media.Id;
+            mediaModel.Created = media.Created;
+            mediaModel.Filename = media.Filename;
+            mediaModel.FolderId = media.FolderId;
+            mediaModel.Type = media.Type;
+            mediaModel.Size = media.Size;
+            mediaModel.Width = media.Width;
+            mediaModel.Height = media.Height;
+            mediaModel.ContentType = media.ContentType;
+            mediaModel.Title = media.Title;
+            mediaModel.AltText = media.AltText;
+            mediaModel.Description = media.Description;
+            mediaModel.LastModified = media.LastModified;
+
+            mediasModel.Add(mediaModel);
+
+        }
+
+        return mediasModel;
+    }
+
     /// <summary>
     /// Gets all media available in the specified folder.
     /// </summary>
@@ -83,7 +118,7 @@ public class MediaRepository : IMediaRepository
             .Where(m => ids.Contains(m.Id))
             .OrderBy(m => m.Filename)
             .ToArrayAsync()
-            .ContinueWith(t => t.Result.Select(m => (Models.Media) m));
+            .ContinueWith(t => t.Result.Select(m => (Models.Media)m));
 
     /// <summary>
     /// Gets the media with the given id.
@@ -320,4 +355,6 @@ public class MediaRepository : IMediaRepository
         }
         return result;
     }
+
+
 }

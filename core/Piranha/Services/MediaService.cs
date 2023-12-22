@@ -42,6 +42,20 @@ public class MediaService : IMediaService
         _cache = cache;
     }
 
+    public async Task<string> GetMediaAsync(string fileName)
+    {
+        string url;
+        var medias = await _repo.GetAll();
+        var media = medias.FirstOrDefault(x => x.Filename == fileName);
+
+        if (media is not null)
+            url = GetPublicUrl(media);
+        else
+            url = "~/assets/img/noimage.png";
+
+        return url;
+    }
+
     //Separated this into its own thing in case it needed to get reused elsewhere.
     private async Task<IEnumerable<Media>> _getFast(IEnumerable<Guid> ids)
     {
