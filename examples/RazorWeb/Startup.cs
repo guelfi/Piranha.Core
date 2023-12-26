@@ -42,7 +42,7 @@ namespace RazorWeb
 
                 if (ctx.Response.StatusCode == 401 && !ctx.User.HasClaim("ReadSecuredPosts", "ReadSecuredPosts"))
                 {
-                    ctx.Response.Redirect("/login");
+                    ctx.Response.Redirect("/manager/login");
                     return;
                 }
 
