@@ -18,5 +18,5 @@ public sealed class SecurityOptions
     /// <summary>
     /// Gets/sets the login url.
     /// </summary>
-    public string LoginUrl { get; set; } = "/login";
+    public string LoginUrl { get; set; } = "/manager/login";
 }
