@@ -4,6 +4,8 @@
     var searchTerm = Request.Query["searchTerm"];
     var filteredPosts = WebApp.Api.Posts.Search(searchTerm).Result;
     var urlImage = await WebApp.Api.Media.GetMediaAsync("purple.png");
+
+    ViewData["Title"] = $"Pesquisou por... '{searchTerm}'";
 }
 
 <header class="has-image" style="background-image: url(@Url.Content(@urlImage))">
