@@ -32,7 +32,8 @@ namespace Piranha.Manager.Models
             {
                 return Redirect(items[0].Items[0].Route);
             }
-            return RedirectToPage("Logout");
+
+            return RedirectToPage("~/");
         }
     }
 }
