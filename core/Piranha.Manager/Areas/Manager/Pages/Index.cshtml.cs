@@ -18,7 +18,9 @@ namespace Piranha.Manager.Models
     [Authorize(Policy = Permission.Admin)]
     public class IndexModel : PageModel
     {
-        private readonly IAuthorizationService _service;
+        public readonly IAuthorizationService _service;
+        
+        public string _message = "Usuário sem permissão para acessar o painel.";
 
         public IndexModel(IAuthorizationService service)
         {
@@ -32,7 +34,10 @@ namespace Piranha.Manager.Models
             {
                 return Redirect(items[0].Items[0].Route);
             }
-
+            else
+            {
+                TempData["Message"] = _message;
+            }
             return RedirectToPage("~/");
         }
     }

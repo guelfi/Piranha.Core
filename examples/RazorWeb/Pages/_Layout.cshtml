@@ -1,4 +1,6 @@
+@using Microsoft.AspNetCore.Authorization;
 @using Piranha.Manager
+@using Piranha.Manager.Models;
 @inject ManagerLocalizer Localizer
 
 @{
@@ -7,7 +9,10 @@
     var nameSite = WebApp.Api.Sites.GetDefaultAsync().Result.Title;
     version = version.Substring(0, version.LastIndexOf("."));
     var logout = Piranha.App.Modules.Manager().LogoutUrl;
+    var modelIndex = Piranha.Manager.Models.IndexModel.Equals;
+    var messagem = TempData["Message"] as string;
 }
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -53,7 +58,7 @@
                         </li>
                     }
                     @*<li class="nav-item">
-                        <a class="nav-link" href="/manager">Painel</a>
+                    <a class="nav-link" href="/manager">Painel</a>
                     </li>*@
                 </ul>
             </div>
@@ -64,7 +69,9 @@
 
     @* <partial name="_Footer" /> *@
 
-    <div class="footer @if (User.Identity.IsAuthenticated) {<text>authenticated</text>}">
+    <div class="footer @if (User.Identity.IsAuthenticated) {
+    <text>authenticated</text>
+}">
         <div class="left-column">
             <a href="~/"><img src="@Url.Content(@urlImage)" alt="LIS2B sua melhor solução" /></a>
         </div>
@@ -74,11 +81,31 @@
 
         @if (User.Identity.IsAuthenticated)
         {
-            <div class="login">
-                <span><a href="@Url.Content(logout)"><i class="fas fa-power-off"></i></a></span>
-                <h6 class="conectedPerson">@User.Identity.Name</h6>
-            </div>
+                                            <div class="login">
+                                                <span><a href="@Url.Content(logout)"><i class="fas fa-power-off"></i></a></span>
+                                                <h6 class="conectedPerson">@User.Identity.Name</h6>
+                                            </div>
         }
+    </div>
+
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content bg-danger text-white">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Erro!</h5>
+                    <button type="button" class="close"  data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    @messagem
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
     </div>
 
 
@@ -86,6 +113,13 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     @* <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script> *@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-
+    @if (TempData.ContainsKey("Message"))
+    {
+        <script>
+            $(document).ready(function () {
+                $('#myModal').modal('show');
+            });
+        </script>
+    }
 </body>
 </html>
