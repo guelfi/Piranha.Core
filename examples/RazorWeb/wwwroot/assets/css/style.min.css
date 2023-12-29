@@ -268,7 +268,7 @@ header {
     }
 
     /* Utilize o seletor de irmão adjacente para estilizar .right-column quando .login está presente */
-/*    .footer .login + .right-column {
+    /*    .footer .login + .right-column {
         justify-content: flex-end;
     }*/
 
@@ -282,7 +282,7 @@ header {
     }
 
 @media screen and (max-width: 600px) {
-/*    .footer .left-column,
+    /*    .footer .left-column,
     .footer .right-column,*/
     .footer .login {
         width: 100%;
@@ -295,6 +295,17 @@ header {
     }
 }
 
+.modal-header {
+    border-color: #dc3545
+}
+
+.modal-body {
+    border-color: #dc3545
+}
+
+.modal-footer {
+    border-color: #dc3545
+}
 
 
 
