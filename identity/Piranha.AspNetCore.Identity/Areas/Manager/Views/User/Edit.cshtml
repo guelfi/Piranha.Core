@@ -63,22 +63,39 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>@Localizer.General["Username"]</label>
-                                <input v-model="userModel.user.userName" class="form-control small" maxlength="128" required />
-                                <div class="invalid-feedback">
-                                    @Localizer.General["Username is mandatory."]
-                                </div>
+                                @if (isNewUser)
+                                {
+                                    <input v-model="userModel.user.userName" class="form-control small" maxlength="128" required />
+                                    <div class="invalid-feedback">
+                                        @Localizer.General["Username is mandatory."]
+                                    </div>
+                                }
+                                else
+                                {
+                                    <input v-model="userModel.user.userName" class="form-control small" maxlength="128" disabled required />
+                                }
                             </div>
                         </div>
+
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>@Localizer.General["Email address"]</label>
-                                <input type="email" v-model="userModel.user.email" class="form-control small" maxlength="128" required />
-                                <div class="invalid-feedback">
-                                    @Localizer.General["Email address is mandatory."]
-                                </div>
+                                @if (User.IsInRole("SysAdmin"))
+                                {
+                                    <input type="email" v-model="userModel.user.email" class="form-control small" maxlength="128" required />
+                                    <div class="invalid-feedback">
+                                        @Localizer.General["Email address is mandatory."]
+                                    </div>
+                                }
+                                else
+                                {
+                                    <input type="email" v-model="userModel.user.email" class="form-control small" maxlength="128" disabled required />
+                                }
+
                             </div>
                         </div>
                     </div>
+
                     @if (User.IsInRole("SysAdmin"))
                     {
                         <div class="form-group">
