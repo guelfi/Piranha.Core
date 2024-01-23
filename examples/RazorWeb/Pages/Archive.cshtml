@@ -140,3 +140,10 @@
         }
     </div>
 </main>
+
+@if (!User.Identity.IsAuthenticated)
+{
+    <script>
+        window.location.href = '/manager/login?returnUrl=/';
+    </script>
+}

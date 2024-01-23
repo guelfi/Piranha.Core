@@ -251,7 +251,7 @@
                             <option v-if="redirectUrl !== null && redirectUrl.length > 0" value="Temporary">@Localizer.General["Temporary"]</option><option v-else value="Temporary"></option>
                         </select>
                     </div>
-                    <div v-if="permissions.length > 0">
+                    <div v-if="permissions.length > 0" hidden>
                         <div class="form-group">
                             <label>@Localizer.General["Permissions"]</label>
                             <ul class="list-group">
