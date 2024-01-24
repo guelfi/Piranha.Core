@@ -40,7 +40,7 @@
                                 @if (item.IsPublished)
                                 {
                                     <span>
-                                        Publicado @item.Published.Value.ToShortDateString()
+                                        Publicado @item.Published.Value.ToString("dd/MM/yyyy")
                                     </span>
                                 }
                                 @if (item.EnableComments && item.CommentCount > 0)

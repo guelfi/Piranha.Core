@@ -78,7 +78,7 @@
                                     @if (post.IsPublished)
                                     {
                                         <span>
-                                            Publicado @post.Published.Value.ToShortDateString()
+                                            Publicado @post.Published.Value.ToString("dd/MM/yyyy")
                                         </span>
                                     }
                                     @if (post.EnableComments && post.CommentCount > 0)
