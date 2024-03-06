@@ -5,7 +5,7 @@
 
 @{
     var version = Piranha.Utils.GetAssemblyVersion(typeof(Piranha.App).Assembly);
-    var urlImage = await WebApp.Api.Media.GetMediaAsync("logo_LIS2b.png");
+    var urlImage = await WebApp.Api.Media.GetMediaAsync("logoHeadsOn.png");
     var nameSite = WebApp.Api.Sites.GetDefaultAsync().Result.Title;
     version = version.Substring(0, version.LastIndexOf("."));
     var logout = Piranha.App.Modules.Manager().LogoutUrl;
@@ -71,10 +71,10 @@
 
     <div class="footer @(User.Identity.IsAuthenticated ? "authenticated" : "")">
         <div class="left-column">
-            <a href="~/"><img src="@Url.Content(@urlImage)" alt="LIS2B sua melhor solução" /></a>
+            <a href="~/"><img src="@Url.Content(@urlImage)" alt="HeadsOn sua melhor solução" /></a>
         </div>
         <div class="right-column">
-            <p>Base de conhecimento - LIS2B &copy - @DateTime.Now.Year</p>
+            <p>Base de conhecimento - HeadsOn &copy - @DateTime.Now.Year</p>
         </div>
 
         @if (User.Identity.IsAuthenticated)

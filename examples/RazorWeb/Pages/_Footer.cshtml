@@ -1,6 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Http;
 @{
-    var urlImage = await WebApp.Api.Media.GetMediaAsync("logo_LIS2b.png");
+    var urlImage = await WebApp.Api.Media.GetMediaAsync("logoHeadsOn.png");
 }
 
 <head>
@@ -10,10 +10,10 @@
 <body>
     <div class="footer">
         <div class="left-column">
-            <img src="@urlImage" alt="LIS2b - Lean Integrated Solutions">
+            <img src="@urlImage" alt="HeadsOn - Tech on finance">
         </div>
         <div class="right-column">
-            <p>Base de conhecimento - LIS2B &copy; - @DateTime.Now.Year</p>
+            <p>Base de conhecimento - HeadsOn &copy; - @DateTime.Now.Year</p>
         </div>
     </div>
 </body>
